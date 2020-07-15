@@ -228,9 +228,9 @@ get.timecode <- function(input, state, getStimuli, getRhythms, ...) {
   }
 
   if (getRhythms == TRUE) {
-    page_answer$stimuli.ticks <- fromJSON(input$stimuli_ticks)
-    page_answer$stimuli.duration <- fromJSON(input$stimuli_duration)
-    page_answer$stimuli.durationTicks <- fromJSON(input$stimuli_durationTicks)
+    page_answer$stimuli.ticks <- input$stimuli_ticks
+    page_answer$stimuli.duration <- input$stimuli_duration
+    page_answer$stimuli.durationTicks <- input$stimuli_durationTicks
   }
   
   return(page_answer)
