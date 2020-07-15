@@ -102,6 +102,33 @@ function gotStream(stream) {
     updateAnalysers();
 }
 
+function errorHandler (e) {
+        alert('Error getting audio');
+        console.log(e);
+}
+
+
+async function getMedia(pc) {
+    
+    if (typeof navigator.mediaDevices.getUserMedia === 'undefined') {
+        
+        navigator.getUserMedia = (
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia
+    );
+        navigator.getUserMedia({
+            audio: true
+        }, gotStream, errorHandler);
+    } else {
+        navigator.mediaDevices.getUserMedia({
+            audio: true
+        }).then(gotStream).catch(errorHandler);
+    }
+  
+}
+
 function initAudio() {
     if (!navigator.getUserMedia)
         navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
